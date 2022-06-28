@@ -4,10 +4,10 @@ import UserItem from './UserItem'
 
 function UsersResults() {
 
-    const {users , loading , fetchUsers} = useContext(GithubContext)
+    const {users , loading} = useContext(GithubContext)
 
     useEffect(() => {
-        fetchUsers()
+
     }, [])
 
     console.log(users)
@@ -22,7 +22,7 @@ function UsersResults() {
     )
     }
     else{
-        return(<h3 className='mx-auto text-2xl font-bold'>Loading...</h3>)
+        return(<h3 className='mx-auto mt-0 text-2xl font-bold'>Loading...</h3>)
     }
 
 }
