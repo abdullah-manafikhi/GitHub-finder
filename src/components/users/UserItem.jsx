@@ -12,7 +12,7 @@ function UserItem({user:{login , avatar_url}}) {
             </div>
             <div className='mt-2 w-32'>
                 <h2 className="card-title">{login}</h2>
-                <Link className='text-slate-400' to={`/users/${login}`}>Visit Profile</Link>
+                <Link className='text-slate-400' to={`/user/${login}`}>Visit Profile</Link>
             </div>
         </div>
     </div>
@@ -23,4 +23,4 @@ UserItem.propTypes={
     user: PropTypes.object.isRequired
 }
 
-export default UserItem
+export default UserItem     

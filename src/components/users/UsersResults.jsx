@@ -1,5 +1,5 @@
 import {useEffect , useContext} from 'react'
-import GithubContext from '../context/GithubContext'
+import GithubContext from '../context/github/GithubContext'
 import UserItem from './UserItem'
 
 function UsersResults() {
