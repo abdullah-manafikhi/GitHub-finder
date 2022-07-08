@@ -1,11 +1,12 @@
-import {useState ,useContext , useReducer} from 'react'
+import {useState ,useContext } from 'react'
 import AlertContext from '../context/alert/AlertContext'
 import GithubContext from '../context/github/GithubContext'
+import {searchUsers} from '../context/github/GithubAction'
 
 
 function UserSearch() {
   const [input, setInput] = useState("")
-  const {users ,searchUsers , clearUsers} = useContext(GithubContext)
+  const {users , clearUsers , dispatch} = useContext(GithubContext)
   const {setAlert , alert , test} = useContext(AlertContext)
 
   const handleChange = (e) => {
@@ -13,20 +14,19 @@ function UserSearch() {
   }
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if(input === ""){
       setAlert("please enter something ... !" , "SET_ALERT")
     }
     else{
-      searchUsers(input)
+      dispatch({type:'SET_LOADING'})
+      const users = await searchUsers(input)
+      dispatch({type:"GET_USERS" , payload: users})
     }
   }
 
-  const clear = () => {
-    clearUsers()
-  }
 
 
   return (
@@ -43,7 +43,7 @@ function UserSearch() {
         </div>
       </div> 
       {users.length !== 0 &&
-      <div className="btn btn-ghost btn-lg mx-auto" onClick={clear}>clear</div>
+      <div className="btn btn-ghost btn-lg mx-auto" onClick={() => {dispatch({type:'CLEAR_USERS'})}}>clear</div>
 }
     </div>
   )

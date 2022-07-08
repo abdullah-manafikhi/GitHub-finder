@@ -5,3 +5,8 @@
 *{
     color: white ;
 }
+
+::-webkit-scrollbar {
+        height: 1px;
+        background: white;
+        }
